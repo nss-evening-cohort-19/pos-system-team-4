@@ -1,9 +1,6 @@
-import clearDom from '../helpers/clearDom';
 import renderToDOM from '../helpers/renderToDom';
 
 const showOrders = (array) => {
-  clearDom();
-
   let domString = '';
   array.forEach(() => {
     domString += `
