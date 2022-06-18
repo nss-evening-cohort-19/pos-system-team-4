@@ -5,9 +5,9 @@ const landingPage = () => {
   <div class="landing-div">
   <h1>Welcome!<h1>
   <div class="landing-buttons">
-  <button type="button" class="btn btn-success btn-lg">View Orders</button>
-  <button type="button" class="btn btn-info btn-lg">Create Order</button>
-  <button type="button" class="btn btn-warning btn-lg">View Revenue</button>
+  <button type="button" class="btn btn-success btn-lg" id="landing-view-orders">View Orders</button>
+  <button type="button" class="btn btn-info btn-lg" id="landing-create-order">Create Order</button>
+  <button type="button" class="btn btn-warning btn-lg" id="landing-view-revenue">View Revenue</button>
   </div>
   </div>`;
 

@@ -1,4 +1,6 @@
+import { getOrders } from '../../api/ordersData';
 import landingPage from '../components/landingPage';
+import { showOrders } from '../components/orders';
 import signOut from '../helpers/signOut';
 
 const navigationEvents = () => {
@@ -9,6 +11,9 @@ const navigationEvents = () => {
     if (e.target.id === 'logo') {
       document.querySelector('#main').innerHTML = '';
       landingPage();
+    }
+    if (e.target.id === 'view-orders') {
+      getOrders().then((orderArray) => showOrders(orderArray));
     }
   });
 };
