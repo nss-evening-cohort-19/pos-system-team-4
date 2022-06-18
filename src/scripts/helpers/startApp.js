@@ -1,6 +1,7 @@
 import domBuilder from '../components/domBuilder';
 import landingPage from '../components/landingPage';
 import navBar from '../components/navBar';
+import domEvents from '../events/domEvents';
 import navigationEvents from '../events/navigationEvents';
 import clearDom from './clearDom';
 
@@ -10,6 +11,7 @@ const startApp = (user) => {
   navBar(user);
   navigationEvents(user);
   landingPage(user);
+  domEvents();
 };
 
 export default startApp;
