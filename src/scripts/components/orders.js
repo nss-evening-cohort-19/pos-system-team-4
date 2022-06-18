@@ -1,22 +1,25 @@
 import renderToDOM from '../helpers/renderToDom';
 
 const showOrders = (array) => {
-  let domString = '';
+  let domString = '<div id="viewOrdersDiv">';
   array.forEach((orders) => {
     domString += `
-    <div class="card" style="width: 18rem;">
+    <div class="card" id="viewOrders" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">${orders.orderName}</h5>
-    <hr><p class="card-text">${orders.isClosed}</p></hr>
+    <hr><p class="card-text">${orders.isClosed === true ? 'Closed' : 'Open'}</p></hr>
     <hr><p class="card-text">${orders.phone}</p></hr>
     <hr><p class="card-text">${orders.email}</p></hr>
-    <hr><p class="card-text">${orders.callInOrder}</p></hr>
+    <hr><p class="card-text">${orders.callInOrder === true ? 'Call In Order' : 'Walk In Order'}</p></hr>
     </div>
+    <div class="card-footer">
     <a href="#" class="card-link" id="orderDetails--${orders.firebaseKey}">Details</a>
-    <a href="#" class="card-link">Edit</a>
-    <div class="card-link">${orders.isClosed === false ? `<a href="#" id="delete--${orders.firebaseKey} class="card-link">Delete</a>` : ''}</div>
+    <a href="#" class="link-warning">Edit</a>
+    <div class="link-danger">${orders.isClosed === false ? `<a href="#" id="delete--${orders.firebaseKey}" class="link-danger">Delete</a>` : ''}</div>
+    </div>
 </div>`;
   });
+  domString += '</div>';
   renderToDOM('#main', domString);
 };
 
