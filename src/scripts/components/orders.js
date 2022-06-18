@@ -2,23 +2,26 @@ import renderToDOM from '../helpers/renderToDom';
 
 const showOrders = (array) => {
   let domString = '';
-  array.forEach(() => {
+  array.forEach((orders) => {
     domString += `
     <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
+    <h5 class="card-title">${orders.orderName}</h5>
+    <hr><p class="card-text">${orders.isClosed}</p></hr>
+    <hr><p class="card-text">${orders.phone}</p></hr>
+    <hr><p class="card-text">${orders.email}</p></hr>
+    <hr><p class="card-text">${orders.callInOrder}</p></hr>
+    </div>
+    <a href="#" class="card-link" id="orderDetails--${orders.firebaseKey}">Details</a>
+    <a href="#" class="card-link">Edit</a>
+    <div class="card-link">${orders.isClosed === false ? `<a href="#" id="delete--${orders.firebaseKey} class="card-link">Delete</a>` : ''}</div>
 </div>`;
   });
   renderToDOM('#main', domString);
 };
 
 const emptyOrders = () => {
-  document.querySelector('#main').innerHTML = '<h1>No Items</h1>';
+  document.querySelector('#main').innerHTML = '<h1>No Orders</h1>';
 };
 
 export {
