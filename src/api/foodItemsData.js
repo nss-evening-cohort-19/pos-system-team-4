@@ -3,24 +3,25 @@ import firebaseConfig from './apiKeys';
 
 const dbUrl = firebaseConfig.databaseURL;
 
-// GET ALL FOOD ITEMS 
+// GET ALL FOOD ITEMS
 const getFood = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/foodItems.json`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 
-// CREATE FOOD ITEMS 
+// CREATE FOOD ITEMS
 const createFood = (foodObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/foodItems.json`, foodObject)
     .then((response) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/foodItems/${response.data.name}.json`, payload)
         .then(() => {
-            getFood(foodObject).then(resolve);
+          getFood(foodObject).then(resolve);
         });
     }).catch(reject);
-})
+});
+
 // DELETE FOOD ITEMS
 const deleteFood = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
@@ -41,4 +42,4 @@ export {
   createFood,
   deleteFood,
   updateFood
-}
+};
