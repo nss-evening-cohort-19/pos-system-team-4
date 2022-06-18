@@ -37,9 +37,16 @@ const updateFood = () => (foodObject) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getFoodItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/foodItems.json?orderBy="orderID"&equalTo="${firebaseKey}"`)
+    .then((itemArray) => resolve(itemArray))
+    .catch((error) => reject(error));
+});
+
 export {
   getFood,
   createFood,
   deleteFood,
-  updateFood
+  updateFood,
+  getFoodItemsByOrderId
 };
