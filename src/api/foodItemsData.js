@@ -39,7 +39,7 @@ const updateFood = () => (foodObject) => new Promise((resolve, reject) => {
 
 const getFoodItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/foodItems.json?orderBy="orderID"&equalTo="${firebaseKey}"`)
-    .then((itemArray) => resolve(itemArray))
+    .then((itemArray) => resolve(Object.values(itemArray)))
     .catch((error) => reject(error));
 });
 
