@@ -13,7 +13,7 @@ const domEvents = () => {
     }
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray));
+      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
       // 'showItems' is just a placeholder for whatever you call your function
       // you will need to uncomment this block
       // and uncomment the getFoodItemsByOrderId block
