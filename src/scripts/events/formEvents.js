@@ -2,12 +2,12 @@ import { createOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 
 const formEvents = () => {
-  document.querySelector('#main-container').addEventListener('submit', (e) => {
+  document.querySelector('#main').addEventListener('submit', (e) => {
     e.preventDefault();
     if (e.target.id.includes('submit-order')) {
       const orderObject = {
         callInOrder: (document.querySelector('#orderType').value === 'walkIn'),
-        dateTime: new Date().toUTCString,
+        dateTime: Date.now(),
         email: document.querySelector('#email').value,
         firebaseKey: '',
         isClosed: false,
@@ -18,6 +18,7 @@ const formEvents = () => {
         total: 0,
         uid: ''
       };
+      console.warn(new Date().toUTCString);
       createOrder(orderObject).then((ordersArray) => showOrders(ordersArray));
     }
   });
