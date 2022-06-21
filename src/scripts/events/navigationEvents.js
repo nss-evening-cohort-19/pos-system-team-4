@@ -1,6 +1,7 @@
 import { getOrders } from '../../api/ordersData';
 import landingPage from '../components/landingPage';
 import { showOrders } from '../components/orders';
+import createOrderForm from '../forms/createOrder';
 import signOut from '../helpers/signOut';
 
 const navigationEvents = () => {
@@ -14,6 +15,9 @@ const navigationEvents = () => {
     }
     if (e.target.id === 'view-orders') {
       getOrders().then((orderArray) => showOrders(orderArray));
+    }
+    if (e.target.id.includes('create-order')) {
+      createOrderForm();
     }
   });
 };
