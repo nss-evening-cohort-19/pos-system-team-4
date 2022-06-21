@@ -6,7 +6,7 @@ const formEvents = () => {
     e.preventDefault();
     if (e.target.id.includes('submit-order')) {
       const orderObject = {
-        callInOrder: (document.querySelector('#orderType').value === 'walkIn'),
+        callInOrder: (document.querySelector('#orderType').value === 'callIn'),
         dateTime: Date.now(),
         email: document.querySelector('#email').value,
         firebaseKey: '',
@@ -18,7 +18,7 @@ const formEvents = () => {
         total: 0,
         uid: ''
       };
-      console.warn(new Date().toUTCString);
+      console.warn(document.querySelector('#orderType').value);
       createOrder(orderObject).then((ordersArray) => showOrders(ordersArray));
     }
   });
