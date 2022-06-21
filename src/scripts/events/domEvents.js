@@ -3,6 +3,8 @@ import { getOrders } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
 // import createOrder from '../forms/createOrder';
+import { getFoodItemsByOrderId } from '../../api/foodItemsData';
+import orderDetails from '../components/pages/orderDetailsPage';
 
 const domEvents = () => {
   document.querySelector('#main').addEventListener('click', (e) => {
@@ -10,9 +12,8 @@ const domEvents = () => {
       getOrders().then((orderArray) => showOrders(orderArray));
     }
     if (e.target.id.includes('orderDetails')) {
-      // const [, firebaseKey] = e.target.id.split('--');
-      // getFoodItemsByOrderId(firebaseKey).then((itemArray) => showItems(itemArray));
-      //
+      const [, firebaseKey] = e.target.id.split('--');
+      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray));
       // 'showItems' is just a placeholder for whatever you call your function
       // you will need to uncomment this block
       // and uncomment the getFoodItemsByOrderId block
