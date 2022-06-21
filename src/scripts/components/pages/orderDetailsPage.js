@@ -1,6 +1,6 @@
 import renderToDOM from '../../helpers/renderToDom';
 
-const orderDetails = (array) => {
+const orderDetails = (array, orderFirebaseKey) => {
 //   const domString = `
 //   <div class="mt-5 d-flex flex-wrap">
 //    <div class="d-flex flex-column">
@@ -32,9 +32,9 @@ const orderDetails = (array) => {
       </div>
     </div>`;
   });
-  // domStringItems += `
-  // <button id="payment-btn--${item.firebaseKey}" class="btn btn-primary">Payment</button>
-  // <button id="add-item-btn--${item.firebaseKey}" class="btn btn-success">Add Item</button>`;
+  domStringItems += `
+  <button id="payment-btn--${orderFirebaseKey}" class="btn btn-primary">Payment</button>
+  <button id="add-item-btn--${orderFirebaseKey}" class="btn btn-success">Add Item</button>`;
 
   renderToDOM('#main', domStringItems);
 };
