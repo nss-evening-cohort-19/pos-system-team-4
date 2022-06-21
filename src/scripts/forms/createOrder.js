@@ -1,11 +1,11 @@
 import clearDom from '../helpers/clearDom';
 import renderToDom from '../helpers/renderToDom';
 
-const createOrder = (order = {}) => {
+const createOrderForm = (order = {}) => {
   clearDom();
   const domString = `
   <div class="createOrderForm">
-<form id="${order.firebaseKey ? `update-card--${order.firebaseKey}` : 'submit-card'}">
+<form id="${order.firebaseKey ? `update-order--${order.firebaseKey}` : 'submit-order'}">
   <div class="mb-3">
     <label for="orderName" class="form-label">Order Name</label>
     <input type="text" class="form-control" id="orderName">
@@ -30,4 +30,4 @@ const createOrder = (order = {}) => {
   renderToDom('#main', domString);
 };
 
-export default createOrder;
+export default createOrderForm;
