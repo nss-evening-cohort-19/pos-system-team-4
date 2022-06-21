@@ -24,6 +24,9 @@ const domEvents = () => {
     if (e.target.id.includes('create-order')) {
       createOrderForm();
     }
+    if (e.target.id === 'landing-view-revenue') {
+      revenuePage();
+    }
   });
 };
 
