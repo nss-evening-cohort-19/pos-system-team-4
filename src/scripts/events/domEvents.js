@@ -1,6 +1,7 @@
 // import { getFoodItemsByOrderId } from '../../api/foodItemsData';
 import { getOrders } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
+import createOrderForm from '../forms/createOrder';
 // import createOrder from '../forms/createOrder';
 
 const domEvents = () => {
@@ -18,6 +19,9 @@ const domEvents = () => {
       // and import 'showItems' or whatever you called it
       // the "Chili Party" order card would be the best one to test clicking on
       // because it has enough food items associated with it for you to test
+    }
+    if (e.target.id.includes('create-order')) {
+      createOrderForm();
     }
   });
 };
