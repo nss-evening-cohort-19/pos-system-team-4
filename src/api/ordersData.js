@@ -5,7 +5,13 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getOrders = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/orders.json`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch((error) => reject(error));
 });
 
@@ -35,7 +41,7 @@ const deleteOrder = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getOrderItems = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/foodItems.json?orderBy="orderId"&equalTo="${firebaseKey}"`)
+  axios.get(`${dbUrl}/foodItems.json?orderBy="orderID"&equalTo="${firebaseKey}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });

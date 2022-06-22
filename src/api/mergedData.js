@@ -1,14 +1,15 @@
 /* eslint-disable implicit-arrow-linebreak */
-import { deleteFood, getFoodItemsByOrderId, getFood } from './foodItemsData';
-import { deleteOrder, getOrderItems, getOrder } from './ordersData';
+import { deleteFood } from './foodItemsData';
+import { deleteOrder, getOrderItems } from './ordersData';
 
-const viewOrderDetails = (orderFirebaseKey) =>
-  new Promise((resolve, reject) => {
-    getOrder(orderFirebaseKey)
-      .then((orderObj) => {
-        getOrderItems(orderObj.firebaseKey).then((orderItemsArray) => {
-          resolve({ orderItems: orderItemsArray, ...orderObj });
-        });
-      })
-      .catch((error) => reject(error));
-  });
+const deleteOrderItems = (orderID) => new Promise((resolve, reject) => {
+  getOrderItems(orderID).then((itemsArray) => {
+    const deleteItemPromises = itemsArray.map((item) => deleteFood(item.firebaseKey));
+
+    Promise.all(deleteItemPromises).then(() => {
+      deleteOrder(orderID).then(resolve);
+    });
+  }).catch((error) => reject(error));
+});
+
+export default deleteOrderItems;
