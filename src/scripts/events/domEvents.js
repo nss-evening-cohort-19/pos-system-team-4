@@ -28,7 +28,7 @@ const domEvents = () => {
     }
     if (e.target.id.includes('delete-order-btn')) {
       // eslint-disable-next-line no-alert
-      if (window.confirm('Want to delete?')) {
+      if (window.confirm('Want to delete??')) {
         const [, firebaseKey] = e.target.id.split('--');
         deleteOrderItems(firebaseKey).then(showOrders);
       }
