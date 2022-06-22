@@ -38,10 +38,10 @@ const domEvents = () => {
     if (e.target.id.includes('editOrder')) {
       const [, firebaseKey] = e.target.id.split('--');
       getOrder(firebaseKey).then((orderObj) => createOrderForm(orderObj));
+    }
 
-      if (e.target.id === 'landing-view-revenue') {
-        getRevenue().then((revenueArray) => revenuePage(revenueArray));
-      }
+    if (e.target.id === 'landing-view-revenue') {
+      getRevenue().then((revenueArray) => revenuePage(revenueArray));
     }
   });
 };
