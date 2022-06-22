@@ -15,7 +15,7 @@ const showOrders = (array) => {
     <div class="card-footer">
     <a href="#" class="card-link" id="orderDetails--${orders.firebaseKey}">Details</a>
     <a href="#" class="link-warning">Edit</a>
-    <div class="link-danger">${orders.isClosed === false ? `<a href="#" id="delete--${orders.firebaseKey}" class="link-danger">Delete</a>` : ''}</div>
+    <div class="link-danger">${orders.isClosed === false ? `<a href="#" id="delete-order-btn--${orders.firebaseKey}" class="link-danger">Delete</a>` : ''}</div>
     </div>
 </div>`;
   });

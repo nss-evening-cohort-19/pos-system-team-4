@@ -1,4 +1,5 @@
 // import { getFoodItemsByOrderId } from '../../api/foodItemsData';
+import deleteOrderItems from '../../api/mergedData';
 import { getOrders } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
@@ -22,6 +23,14 @@ const domEvents = () => {
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();
+    }
+
+    if (e.target.id.includes('delete-order-btn')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        const [, firebaseKey] = e.target.id.split('--');
+        deleteOrderItems(firebaseKey).then(showOrders);
+      }
     }
   });
 };
