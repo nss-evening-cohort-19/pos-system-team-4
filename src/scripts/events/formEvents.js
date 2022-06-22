@@ -18,8 +18,20 @@ const formEvents = () => {
         total: 0,
         uid: ''
       };
+      console.warn(document.querySelector('#orderType').value);
       createOrder(orderObject).then((ordersArray) => showOrders(ordersArray));
     }
+
+  //  if (e.target.id.includes('submit-item')) {
+    // const foodObject = {
+    // name: document.querySelector('#itemName').value,
+    // description: document.querySelector('#itemDescription').value,
+    // price: document.querySelector('#itemPrice').value,
+    // orderId: '',
+    //   firebaseKey: '',
+    // };
+    //  createFood(foodObject).then((foodsArray) => getOrder(foodsArray));
+  //  }
   });
 };
 
