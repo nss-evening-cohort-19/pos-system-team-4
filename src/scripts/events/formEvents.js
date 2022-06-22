@@ -18,7 +18,6 @@ const formEvents = () => {
         total: 0,
         uid: ''
       };
-      console.warn(document.querySelector('#orderType').value);
       createOrder(orderObject).then((ordersArray) => showOrders(ordersArray));
     }
   });
