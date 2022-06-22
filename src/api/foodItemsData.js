@@ -37,9 +37,17 @@ const updateFood = () => (foodObject) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// get food order
+const getFoodOrderByUid = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/fooditems.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+// order details
 const getFoodItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/foodItems.json?orderBy="orderID"&equalTo="${firebaseKey}"`)
-    .then((itemArray) => resolve(Object.values(itemArray)))
+    .then((itemArray) => resolve(Object.values(itemArray.data)))
     .catch((error) => reject(error));
 });
 
@@ -48,5 +56,6 @@ export {
   createFood,
   deleteFood,
   updateFood,
-  getFoodItemsByOrderId
+  getFoodItemsByOrderId,
+  getFoodOrderByUid
 };
