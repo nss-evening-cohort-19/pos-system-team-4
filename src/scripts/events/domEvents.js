@@ -6,6 +6,7 @@ import createOrderForm from '../forms/createOrder';
 import { getFoodItemsByOrderId } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
+import { getRevenue } from '../../api/revenueData';
 
 const domEvents = () => {
   document.querySelector('#main').addEventListener('click', (e) => {
@@ -26,7 +27,7 @@ const domEvents = () => {
       createOrderForm();
     }
     if (e.target.id === 'landing-view-revenue') {
-      revenuePage();
+      getRevenue().then((revenueArray) => revenuePage(revenueArray));
     }
   });
 };

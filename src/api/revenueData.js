@@ -7,7 +7,7 @@ const dbUrl = firebaseConfig.databaseURL;
 const getRevenue = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/revenue.json`)
     .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error))
+    .catch((error) => reject(error));
 });
 
 // DELETE REVENUE
@@ -28,7 +28,7 @@ const createRevenue = (revObject) => new Promise((resolve, reject) => {
         .then(() => {
           getRevenue(revObject).then(resolve);
         });
-    }).catch(reject)
+    }).catch(reject);
 });
 
 // UPDATE REVENUE
@@ -61,4 +61,4 @@ export {
   updateRevenue,
   getRevenueOrder,
   getRevenuePayment
-}
+};
