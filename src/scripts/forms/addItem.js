@@ -9,6 +9,11 @@ const addItem = (item = {}) => {
   <div class="mb-3">
     <label for="itemName" class="form-label">Item Name</label>
     <input type="text" class="form-control" id="itemName">
+    </div>
+    <div class="mb-3">
+    <label for="itemDescription" class="form-label">Item Description</label>
+    <input type="text" class="form-control" id="itemDescription">
+  </div>
   <div class="mb-3">
     <label for="itemPrice" class="form-label">Item Price</label>
     <input type="text" class="form-control" id="itemPrice">

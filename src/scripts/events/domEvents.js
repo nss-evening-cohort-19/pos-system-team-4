@@ -1,6 +1,6 @@
 // import { getFoodItemsByOrderId } from '../../api/foodItemsData';
 import deleteOrderItems from '../../api/mergedData';
-import { getOrders } from '../../api/ordersData';
+import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
 // import createOrder from '../forms/createOrder';
@@ -34,10 +34,15 @@ const domEvents = () => {
         deleteOrderItems(firebaseKey).then(showOrders);
       }
     }
+
+    if (e.target.id.includes('editOrder')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getOrder(firebaseKey).then((orderObj) => createOrderForm(orderObj));
+    }
+
     if (e.target.id === 'landing-view-revenue') {
       getRevenue().then((revenueArray) => revenuePage(revenueArray));
     }
   });
 };
-
 export default domEvents;
