@@ -17,6 +17,7 @@ const deleteOrderItems = (orderID) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+// close order, and copy parts of that order object to a new revenue object
 const closeOrder = (firebaseKey) => new Promise((resolve, reject) => {
   const closingPayload = { isClosed: true };
   axios.patch(`${dbUrl}/orders/${firebaseKey}.json`, closingPayload)
