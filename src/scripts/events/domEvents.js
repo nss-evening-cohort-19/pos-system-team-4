@@ -18,7 +18,11 @@ const domEvents = () => {
     }
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
+      let orderIsOpen = true;
+      if (e.target.id.includes('Closed')) {
+        orderIsOpen = false;
+      }
+      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey, orderIsOpen));
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();

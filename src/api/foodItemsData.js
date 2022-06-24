@@ -18,18 +18,6 @@ const getSingleFoodItem = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CREATE FOOD ITEMS
-const createFood = (foodObject) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/foodItems.json`, foodObject)
-    .then((response) => {
-      const payload = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/foodItems/${response.data.name}.json`, payload)
-        .then(() => {
-          getFood(foodObject).then(resolve);
-        });
-    }).catch(reject);
-});
-
 // DELETE FOOD ITEMS
 const deleteFood = (firebaseKey, orderFirebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
