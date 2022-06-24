@@ -6,20 +6,20 @@ const createOrderForm = (order = {}) => {
 <form id="${order.firebaseKey ? `update-order--${order.firebaseKey}` : 'submit-order'}">
   <div class="mb-3">
     <label for="orderName" class="form-label">Order Name</label>
-    <input type="text" class="form-control" id="orderName" required>
+    <input type="text" class="form-control" id="orderName" value="${order.orderName ? `${order.orderName}` : ''}" required>
   <div class="mb-3">
     <label for="phone" class="form-label">Customer Phone</label>
-    <input type="text" class="form-control" id="phone" required>
+    <input type="text" class="form-control" id="phone" value="${order.phone ? `${order.phone}` : ''}" required>
   </div>
   <div class="mb-3">
   <label for="email" class="form-label">Customer Email</label>
-  <input type="text" class="form-control" id="email" required>
+  <input type="text" class="form-control" id="email" value="${order.email ? `${order.email}` : ''}" required>
 </div>
   <label for="orderType">Order Type</label>
   <select class="form-select" id="orderType" required>
-    <option selected>${order.callInOrder || 'Select An Order Type'}</option>
-    <option value="walkIn">Walk In</option>
-    <option value="callIn">Call In</option>
+    <option ${order ? '' : 'selected'}>Select An Order Type</option>
+    <option value="walkIn" ${order && order.callInOrder === false ? 'selected' : ''}>Walk In</option>
+    <option value="callIn" ${order.callInOrder === true ? 'selected' : ''}>Call In</option>
   </select>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

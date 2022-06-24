@@ -1,4 +1,4 @@
-import { createOrder } from '../../api/ordersData';
+import { createOrder, updateOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 
 const formEvents = () => {
@@ -18,8 +18,25 @@ const formEvents = () => {
         total: 0,
         uid: ''
       };
-      console.warn(document.querySelector('#orderType').value);
       createOrder(orderObject).then((ordersArray) => showOrders(ordersArray));
+    }
+
+    if (e.target.id.includes('update-order')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const orderObject = {
+        callInOrder: (document.querySelector('#orderType').value === 'callIn'),
+        // dateTime: Date.now(),
+        email: document.querySelector('#email').value,
+        // firebaseKey: '',
+        // isClosed: false,
+        orderName: document.querySelector('#orderName').value,
+        paymentID: '',
+        phone: document.querySelector('#phone').value,
+        tip: 0,
+        total: 0,
+        uid: ''
+      };
+      updateOrder(firebaseKey, orderObject).then((ordersArray) => showOrders(ordersArray));
     }
 
   //  if (e.target.id.includes('submit-item')) {
