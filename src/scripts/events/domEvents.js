@@ -9,6 +9,7 @@ import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
 import { getRevenue } from '../../api/revenueData';
 import addItem from '../forms/addItem';
+import addPaymentForm from '../forms/addPayment';
 
 const domEvents = () => {
   document.querySelector('#main').addEventListener('click', (e) => {
@@ -48,6 +49,9 @@ const domEvents = () => {
     if (e.target.id.includes('add-item')) {
       const [, firebaseKey] = e.target.id.split('--');
       addItem(firebaseKey);
+}
+    if (e.target.id.includes('payment-btn')) {
+      addPaymentForm();
     }
   });
 };
