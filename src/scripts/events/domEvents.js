@@ -4,7 +4,7 @@ import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
 // import createOrder from '../forms/createOrder';
-import { getFoodItemsByOrderId } from '../../api/foodItemsData';
+import { getFoodItemsByOrderId, getSingleFoodItem, deleteFood } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
 import { getRevenue } from '../../api/revenueData';
@@ -19,12 +19,6 @@ const domEvents = () => {
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
       getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
-      // 'showItems' is just a placeholder for whatever you call your function
-      // you will need to uncomment this block
-      // and uncomment the getFoodItemsByOrderId block
-      // and import 'showItems' or whatever you called it
-      // the "Chili Party" order card would be the best one to test clicking on
-      // because it has enough food items associated with it for you to test
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();
@@ -37,6 +31,21 @@ const domEvents = () => {
       }
     }
 
+    // CLICK EVENT FOR EDITING AN ITEM
+    if (e.target.id.includes('edit-item')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
+    }
+
+    // CLICK EVENT FOR DELETING AN ITEM
+    if (e.target.id.includes('delete-item')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Delete Item from Order?')) {
+        const [, orderFirebaseKey, uid] = e.target.id.split('--');
+        deleteFood(orderFirebaseKey, uid).then((itemArray) => getFoodItemsByOrderId(uid, itemArray));
+      }
+    }
+
     if (e.target.id.includes('editOrder')) {
       const [, firebaseKey] = e.target.id.split('--');
       getOrder(firebaseKey).then((orderObj) => createOrderForm(orderObj));
@@ -45,7 +54,7 @@ const domEvents = () => {
     if (e.target.id === 'landing-view-revenue') {
       getRevenue().then((revenueArray) => revenuePage(revenueArray));
     }
-
+    // CLICK EVENT FOR OPENING ADD ITEM FORM
     if (e.target.id.includes('add-item')) {
       const [, firebaseKey] = e.target.id.split('--');
       addItem(firebaseKey);
