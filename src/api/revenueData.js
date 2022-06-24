@@ -25,9 +25,7 @@ const createRevenue = (revObject) => new Promise((resolve, reject) => {
     .then((response) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/revenue/${response.data.name}.json`, payload)
-        .then(() => {
-          getRevenue(revObject).then(resolve);
-        });
+        .then((patchResponse) => resolve(patchResponse));
     }).catch(reject);
 });
 

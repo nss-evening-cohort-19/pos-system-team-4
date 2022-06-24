@@ -4,7 +4,7 @@
     "orderName": "Chili Party",
     "phone": "800-400-0399",
     "email": "bavrahamov0@google.pl",
-    "isClosed": true,
+    "isClosed": false,
     "paymentID": "-N4jEihZtPg-vEscur_X",
     "callInOrder": true,
     "tip": "66",
@@ -39,11 +39,11 @@
 		"uid": ""
   },
   "-N7jw1XMXeGPwdmyZps3": {
-    "firebaseKey": "N7jw1XMXeGPwdmyZps3",
+    "firebaseKey": "-N7jw1XMXeGPwdmyZps3",
     "orderName": "Easy Bake Lovin",
     "phone": "692-325-2234",
     "email": "bocarran0@nbcnews.com",
-    "isClosed": false,
+    "isClosed": true,
     "paymentID": "-N4jFAFTCgSAeU_30Ed",
     "callInOrder": true,
     "tip": "22",

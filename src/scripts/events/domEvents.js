@@ -1,5 +1,5 @@
 // import { getFoodItemsByOrderId } from '../../api/foodItemsData';
-import deleteOrderItems from '../../api/mergedData';
+import { deleteOrderItems } from '../../api/mergedData';
 import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
@@ -18,7 +18,11 @@ const domEvents = () => {
     }
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
+      let orderIsOpen = true;
+      if (e.target.id.includes('Closed')) {
+        orderIsOpen = false;
+      }
+      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey, orderIsOpen));
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();
@@ -61,7 +65,8 @@ const domEvents = () => {
     }
 
     if (e.target.id.includes('payment-btn')) {
-      addPaymentForm();
+      const [, firebaseKey] = e.target.id.split('--');
+      addPaymentForm(firebaseKey);
     }
   });
 };

@@ -13,7 +13,7 @@ const showOrders = (array) => {
       <hr><p class="card-text">${orders.callInOrder === true ? 'Call In Order' : 'Walk In Order'}</p></hr>
     </div>
     <div class="card-footer">
-      <a href="#" class="card-link" id="orderDetails--${orders.firebaseKey}">Details</a>
+      <a href="#" class="card-link" id="orderDetails${orders.isClosed === true ? 'Closed' : 'Open'}--${orders.firebaseKey}">Details</a>
       <a href="#" class="link-warning" id="editOrder--${orders.firebaseKey}">Edit</a>
     <div class="link-danger">${orders.isClosed === false ? `<a href="#" id="delete-order-btn--${orders.firebaseKey}" class="link-danger">Delete</a>` : ''}</div>
     </div>
