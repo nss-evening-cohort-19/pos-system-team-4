@@ -1,11 +1,9 @@
-import clearDom from '../helpers/clearDom';
 import renderToDom from '../helpers/renderToDom';
 
-const addItem = (item = {}) => {
-  clearDom();
+const addItem = (firebaseKey, item = {}) => {
   const domString = `
   <div class="addItemForm">
-<form id="${item.firebaseKey ? `update-item--${item.firebaseKey}` : 'submit-item'}">
+<form id="${item.firebaseKey ? `update-item--${item.firebaseKey}` : `submit-item--${firebaseKey}`}">
   <div class="mb-3">
     <label for="itemName" class="form-label">Item Name</label>
     <input type="text" class="form-control" id="itemName">
