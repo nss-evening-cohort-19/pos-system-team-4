@@ -49,7 +49,8 @@ const domEvents = () => {
     if (e.target.id.includes('add-item')) {
       const [, firebaseKey] = e.target.id.split('--');
       addItem(firebaseKey);
-}
+    }
+
     if (e.target.id.includes('payment-btn')) {
       addPaymentForm();
     }
