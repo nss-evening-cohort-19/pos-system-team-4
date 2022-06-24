@@ -1,11 +1,12 @@
 /* eslint-disable implicit-arrow-linebreak */
-import axios from 'axios';
-import firebaseConfig from './apiKeys';
 import { deleteFood } from './foodItemsData';
-import { deleteOrder, getOrderItems, getOrder } from './ordersData';
+import {
+  deleteOrder,
+  getOrderItems,
+  getOrder,
+  updateOrder
+} from './ordersData';
 import { createRevenue } from './revenueData';
-
-const dbUrl = firebaseConfig.databaseURL;
 
 const deleteOrderItems = (orderID) => new Promise((resolve, reject) => {
   getOrderItems(orderID).then((itemsArray) => {
@@ -18,9 +19,8 @@ const deleteOrderItems = (orderID) => new Promise((resolve, reject) => {
 });
 
 // close order, and copy parts of that order object to a new revenue object
-const closeOrder = (firebaseKey) => new Promise((resolve, reject) => {
-  const closingPayload = { isClosed: true };
-  axios.patch(`${dbUrl}/orders/${firebaseKey}.json`, closingPayload)
+const closeOrder = (firebaseKey, closingPayload) => new Promise((resolve, reject) => {
+  updateOrder(firebaseKey, closingPayload)
     .then(() => {
       getOrder(firebaseKey)
         .then((orderObj) => {

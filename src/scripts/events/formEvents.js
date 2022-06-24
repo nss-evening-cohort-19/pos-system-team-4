@@ -2,6 +2,8 @@ import { createOrder, updateOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import { createFood } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
+import landingPage from '../components/landingPage';
+import { closeOrder } from '../../api/mergedData';
 
 const formEvents = () => {
   document.querySelector('#main').addEventListener('submit', (e) => {
@@ -51,6 +53,16 @@ const formEvents = () => {
         firebaseKey: '',
       };
       createFood(foodObject, firebaseKey).then((foodsArray) => orderDetails(foodsArray, firebaseKey));
+    }
+
+    if (e.target.id.includes('submit-payment')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const orderObject = {
+        paymentID: document.querySelector('#paymentType').value,
+        tip: document.querySelector('#paymentTip').value,
+        isClosed: true
+      };
+      closeOrder(firebaseKey, orderObject).then(landingPage());
     }
   });
 };

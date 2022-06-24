@@ -1,5 +1,5 @@
 // import { getFoodItemsByOrderId } from '../../api/foodItemsData';
-import deleteOrderItems from '../../api/mergedData';
+import { deleteOrderItems } from '../../api/mergedData';
 import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
@@ -52,7 +52,8 @@ const domEvents = () => {
     }
 
     if (e.target.id.includes('payment-btn')) {
-      addPaymentForm();
+      const [, firebaseKey] = e.target.id.split('--');
+      addPaymentForm(firebaseKey);
     }
   });
 };
