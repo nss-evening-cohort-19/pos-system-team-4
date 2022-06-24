@@ -1,5 +1,7 @@
 import { createOrder, updateOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
+import { createFood } from '../../api/foodItemsData';
+import orderDetails from '../components/pages/orderDetailsPage';
 
 const formEvents = () => {
   document.querySelector('#main').addEventListener('submit', (e) => {
@@ -39,16 +41,17 @@ const formEvents = () => {
       updateOrder(firebaseKey, orderObject).then((ordersArray) => showOrders(ordersArray));
     }
 
-  //  if (e.target.id.includes('submit-item')) {
-    // const foodObject = {
-    // name: document.querySelector('#itemName').value,
-    // description: document.querySelector('#itemDescription').value,
-    // price: document.querySelector('#itemPrice').value,
-    // orderId: '',
-    //   firebaseKey: '',
-    // };
-    //  createFood(foodObject).then((foodsArray) => getOrder(foodsArray));
-  //  }
+    if (e.target.id.includes('submit-item')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const foodObject = {
+        name: document.querySelector('#itemName').value,
+        description: document.querySelector('#itemDescription').value,
+        price: document.querySelector('#itemPrice').value,
+        orderID: `${firebaseKey}`,
+        firebaseKey: '',
+      };
+      createFood(foodObject, firebaseKey).then((foodsArray) => orderDetails(foodsArray, firebaseKey));
+    }
   });
 };
 
