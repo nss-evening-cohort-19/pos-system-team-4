@@ -60,6 +60,18 @@ const getFoodItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => 
     .catch((error) => reject(error));
 });
 
+// CREATE FOOD ITEMS
+const createFood = (foodObject, firebaseKey) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/foodItems.json`, foodObject)
+    .then((response) => {
+      const payload = { firebaseKey: response.data.name };
+      axios.patch(`${dbUrl}/foodItems/${response.data.name}.json`, payload)
+        .then(() => {
+          getFoodItemsByOrderId(firebaseKey).then(resolve);
+        });
+      console.warn(firebaseKey);
+    }).catch(reject);
+});
 export {
   getFood,
   getSingleFoodItem,

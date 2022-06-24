@@ -9,6 +9,7 @@ import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
 import { getRevenue } from '../../api/revenueData';
 import addItem from '../forms/addItem';
+import addPaymentForm from '../forms/addPayment';
 
 const domEvents = () => {
   document.querySelector('#main').addEventListener('click', (e) => {
@@ -18,12 +19,6 @@ const domEvents = () => {
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
       getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
-      // 'showItems' is just a placeholder for whatever you call your function
-      // you will need to uncomment this block
-      // and uncomment the getFoodItemsByOrderId block
-      // and import 'showItems' or whatever you called it
-      // the "Chili Party" order card would be the best one to test clicking on
-      // because it has enough food items associated with it for you to test
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();
@@ -42,25 +37,6 @@ const domEvents = () => {
       getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
     }
 
-    // CLICK EVENT FOR OPENING ADD ITEM FORM
-    if (e.target.id.includes('add-item')) {
-      const [, firebaseKey] = e.target.id.split('--');
-      addItem(firebaseKey);
-    }
-
-    // CLICK EVENT FOR SUBMITTING NEW ITEM
-    if (e.target.id.includes('submit-item')) {
-      e.preventDefault();
-      const [, orderID] = e.target.id.split('--');
-      console.warn(orderID);
-      const newItem = {
-        name: document.querySelector('#itemName').value,
-        price: Number(document.querySelector('#itemPrice').value),
-        orderID,
-      };
-      addItem(newItem).then((itemArray) => orderDetails(itemArray));
-    }
-
     // CLICK EVENT FOR DELETING AN ITEM
     if (e.target.id.includes('delete-item')) {
       // eslint-disable-next-line no-alert
@@ -77,6 +53,15 @@ const domEvents = () => {
 
     if (e.target.id === 'landing-view-revenue') {
       getRevenue().then((revenueArray) => revenuePage(revenueArray));
+    }
+    // CLICK EVENT FOR OPENING ADD ITEM FORM
+    if (e.target.id.includes('add-item')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      addItem(firebaseKey);
+    }
+
+    if (e.target.id.includes('payment-btn')) {
+      addPaymentForm();
     }
   });
 };
