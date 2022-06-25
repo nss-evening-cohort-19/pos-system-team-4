@@ -13,7 +13,7 @@ const addPaymentForm = (firebaseKey) => {
       <label for="tip">Tip Amount</label>
       <input type="text" class="form-control" id="paymentTip" placeholder="" value="">
     </div>
-    <div id="paymentTotal">Your total is $<div id="paymentTotalNumber"></div></div>
+    <div id="paymentTotal">Total: $<div id="paymentTotalNumber" class="paymentTotalNumber"></div></div>
     <button type="submit-payment" class="btn btn-primary">Close Order</button>
   </form>
   </div>`;
