@@ -1,6 +1,6 @@
 import { createOrder, updateOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
-import { createFood } from '../../api/foodItemsData';
+import { createFood, updateFood } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
 import landingPage from '../components/landingPage';
 import { closeOrder } from '../../api/mergedData';
@@ -53,6 +53,18 @@ const formEvents = () => {
         firebaseKey: '',
       };
       createFood(foodObject, firebaseKey).then((foodsArray) => orderDetails(foodsArray, firebaseKey));
+    }
+
+    if (e.target.id.includes('update-item')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const foodObject = {
+        name: document.querySelector('#itemName').value,
+        description: document.querySelector('#itemDescription').value,
+        price: document.querySelector('#itemPrice').value,
+        orderID: `${firebaseKey}`,
+        firebaseKey: '',
+      };
+      updateFood(foodObject, firebaseKey).then((foodsArray) => orderDetails(foodsArray, firebaseKey));
     }
 
     if (e.target.id.includes('submit-payment')) {
