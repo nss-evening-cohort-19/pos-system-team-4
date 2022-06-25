@@ -20,15 +20,15 @@ const addPaymentForm = (firebaseKey) => {
 
   renderToDom('#main', domstring);
   selectPayment('select-payment');
-  let total = 0;
+  let theTotal = 0;
   getFoodItemsByOrderId(firebaseKey).then((response) => {
     response.forEach((item) => {
-      total += item.price;
+      theTotal += item.price;
     });
-    console.warn(total);
-    renderToDom('#paymentTotalNumber', total);
-    const totalObj = { total };
+    renderToDom('#paymentTotalNumber', theTotal);
+    const totalObj = { total: theTotal };
     updateOrder(firebaseKey, totalObj);
+    console.warn(firebaseKey, 'and ', totalObj);
   });
 };
 
