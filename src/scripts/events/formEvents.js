@@ -56,15 +56,15 @@ const formEvents = () => {
     }
 
     if (e.target.id.includes('update-item')) {
-      const [, firebaseKey] = e.target.id.split('--');
+      const [,, orderFirebaseKey] = e.target.id.split('--');
       const foodObject = {
         name: document.querySelector('#itemName').value,
         description: document.querySelector('#itemDescription').value,
         price: document.querySelector('#itemPrice').value,
-        orderID: `${firebaseKey}`,
-        firebaseKey: '',
+        // orderID: `${firebaseKey}`,
+        // firebaseKey: '',
       };
-      updateFood(foodObject, firebaseKey).then((foodsArray) => orderDetails(foodsArray, firebaseKey));
+      updateFood(foodObject, orderFirebaseKey).then((foodsArray) => orderDetails(foodsArray, orderFirebaseKey));
     }
 
     if (e.target.id.includes('submit-payment')) {
