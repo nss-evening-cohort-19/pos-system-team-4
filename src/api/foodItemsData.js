@@ -18,13 +18,6 @@ const getSingleFoodItem = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// UPDATE FOOD ITEMS
-const updateFood = () => (foodObject) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/foodItems/${foodObject.firebaseKey}.json`, foodObject)
-    .then(() => getFood().then(resolve))
-    .catch(reject);
-});
-
 // get food order
 const getFoodOrderByUid = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/fooditems.json?orderBy="uid"&equalTo="${uid}"`)
@@ -51,6 +44,15 @@ const deleteSingleFoodItem = (firebaseKey, orderID) => new Promise((resolve, rej
   axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
     .then(() => {
       getFoodItemsByOrderId(orderID).then((foodArray) => resolve(foodArray));
+    })
+    .catch((error) => reject(error));
+});
+
+// UPDATE FOOD ITEM
+const updateFood = (foodObject, itemFirebaseKey, orderFirebaseKey) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/foodItems/${itemFirebaseKey}.json`, foodObject)
+    .then(() => {
+      getFoodItemsByOrderId(orderFirebaseKey).then((foodArray) => resolve(foodArray));
     })
     .catch((error) => reject(error));
 });
