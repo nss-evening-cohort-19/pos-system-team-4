@@ -23,7 +23,7 @@ const addPaymentForm = (firebaseKey) => {
   let theTotal = 0;
   getFoodItemsByOrderId(firebaseKey).then((response) => {
     response.forEach((item) => {
-      theTotal += item.price;
+      theTotal += parseInt(item.price, 10);
     });
     renderToDom('#paymentTotalNumber', theTotal);
     const totalObj = { total: theTotal };
