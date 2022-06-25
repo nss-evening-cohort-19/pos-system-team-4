@@ -72,8 +72,10 @@ const formEvents = () => {
       const orderObject = {
         paymentID: document.querySelector('#paymentType').value,
         tip: document.querySelector('#paymentTip').value,
-        isClosed: true
+        isClosed: true,
+        total: parseInt(document.querySelector('#paymentTotalNumber').value)
       };
+      console.warn(parseInt(document.querySelector('#paymentTotalNumber').value));
       closeOrder(firebaseKey, orderObject).then(landingPage());
     }
   });
