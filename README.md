@@ -18,6 +18,13 @@ HHP+W is a point of sale webapp created in a simulated work environment for Nash
 ## HHP+W Features
 [LOOM VIDEO]
 
+## Team Members
+- [Patrick Burns](https://github.com/patrick24cr)
+- [Tatiana Pronoza](https://github.com/tpronoza)
+- [Micah (Tots) Stotsky](https://github.com/JustCallMeTots)
+- [Adam Steel](https://github.com/mcgrief)
+- [Cody Clark](https://github.com/cod-y-clark)
+
 ## Technologies Used 
 - JavaScript
 - CSS
