@@ -38,8 +38,8 @@ body {
 }
 
 #orderDetailsPageDiv {
-  margin-left: 450px;
-  margin-bottom: 100px;
+  width: 600px;
+  margin: auto;
   text-align: left;
 }
 
@@ -71,4 +71,8 @@ body {
   width: 500px;
   margin: auto;
   margin-top: 20px;
+}
+
+.paymentTotalNumber {
+  display: inline;
 }
