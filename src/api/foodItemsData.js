@@ -1,6 +1,6 @@
 import axios from 'axios';
 import firebaseConfig from './apiKeys';
-import { getOrderByUid } from './ordersData';
+// import { getOrderByUid } from './ordersData';
 
 const dbUrl = firebaseConfig.databaseURL;
 
@@ -15,15 +15,6 @@ const getFood = () => new Promise((resolve, reject) => {
 const getSingleFoodItem = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/foodItems/${firebaseKey}.json`)
     .then((response) => resolve(response.data))
-    .catch(reject);
-});
-
-// DELETE FOOD ITEMS
-const deleteFood = (firebaseKey, orderFirebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
-    .then(() => {
-      getOrderByUid(orderFirebaseKey).then((itemArray) => resolve(itemArray));
-    })
     .catch(reject);
 });
 
@@ -48,6 +39,23 @@ const getFoodItemsByOrderId = (firebaseKey) => new Promise((resolve, reject) => 
     .catch((error) => reject(error));
 });
 
+// DELETE FOOD ITEMS
+const deleteFood = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
+    .then(() => {
+      getFood().then((itemArray) => resolve(itemArray));
+    }).catch((error) => reject(error));
+});
+
+const deleteSingleFoodItem = (foodItemObject, firebaseKey) => new Promise((resolve, reject) => {
+  const orderIDs = foodItemObject.orderID;
+  axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
+    .then(() => {
+      getFoodItemsByOrderId(orderIDs).then((foodArray) => resolve(foodArray));
+    })
+    .catch((error) => reject(error));
+});
+
 // CREATE FOOD ITEMS
 const createFood = (foodObject, firebaseKey) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/foodItems.json`, foodObject)
@@ -65,6 +73,7 @@ export {
   getSingleFoodItem,
   createFood,
   deleteFood,
+  deleteSingleFoodItem,
   updateFood,
   getFoodItemsByOrderId,
   getFoodOrderByUid

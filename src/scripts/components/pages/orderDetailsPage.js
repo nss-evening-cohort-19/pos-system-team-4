@@ -21,8 +21,8 @@ const orderDetails = (array, orderFirebaseKey, orderIsOpen) => {
     <div class="mt-5 d-flex flex-wrap">
       <div class="d-flex flex-column">
       ${orderIsOpen ? `<div class="mt-5">
-      <i id="edit-item-btn--${item.OrderID}" class="fas fa-edit btn btn-info"></i>
-      <i id="delete-item--${item.OrderID}" class="btn btn-danger fas fa-trash-alt"></i>
+      <i id="update-item-btn--${item.firebaseKey}--${item.orderID}" class="fas fa-edit btn btn-info"></i>
+      <i id="delete-item-btn--${item.firebaseKey}--${item.orderID}" class="btn btn-danger fas fa-trash-alt"></i>
     </div>` : ''}
       </div>
       <div class="text-white ms-5 details">

@@ -1,10 +1,8 @@
-// import { getFoodItemsByOrderId } from '../../api/foodItemsData';
 import { deleteOrderItems } from '../../api/mergedData';
 import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
-// import createOrder from '../forms/createOrder';
-import { getFoodItemsByOrderId, getSingleFoodItem, deleteFood } from '../../api/foodItemsData';
+import { getFoodItemsByOrderId, deleteFood, getSingleFoodItem } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
 import { getRevenue } from '../../api/revenueData';
@@ -36,17 +34,18 @@ const domEvents = () => {
     }
 
     // CLICK EVENT FOR EDITING AN ITEM
-    if (e.target.id.includes('edit-item')) {
+    if (e.target.id.includes('update-item')) {
       const [, firebaseKey] = e.target.id.split('--');
-      getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
+      // getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
+      getSingleFoodItem(firebaseKey).then((orderObj) => addItem(orderObj));
     }
 
     // CLICK EVENT FOR DELETING AN ITEM
     if (e.target.id.includes('delete-item')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Delete Item from Order?')) {
-        const [, orderFirebaseKey, uid] = e.target.id.split('--');
-        deleteFood(orderFirebaseKey, uid).then((itemArray) => getFoodItemsByOrderId(uid, itemArray));
+        const [, firebaseKey, orderID] = e.target.id.split('--');
+        deleteFood(firebaseKey, orderID).then(orderDetails);
       }
     }
 
