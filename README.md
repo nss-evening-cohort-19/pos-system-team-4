@@ -3,45 +3,32 @@
 
 <image src="./instructions/hhpw-record.png" style="height:300px;"></image></div>
 
-## Get Started
-**READ ALL INSTRUCTIONS BEFORE BEGINNING THIS PROJECT.** Take notes as you read.
+## Overview
+HHP+W is a point of sale webapp created in a simulated work environment for Nashville Software School's Full Stack Software Development Bootcamp. This app allows users to place food orders, create individual items, edit and delete the orders & items, and track revenue per payment method type. 
 
-Everything that needs to be done before coding starts.
+## Planning
+- [ERD](https://dbdiagram.io/d/62a7c77a9921fe2a96f9bb32)
+- [Flowchart](https://docs.google.com/presentation/d/1ZfNnoosXd47thGJqYf47iY74ci0My76qhABoTEiJV-4/edit#slide=id.p)
+- [Wireframe](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)
 
-* **ERD** - Create an ERD to show the relationships between all of  your data
-* **Postman Collection** - Create a postman collection to store and test out all of your API calls.
-* **[Wireframes](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)** - This is the basic MVP wireframe. You can choose to style how you wish. (View the [click through prototype](https://www.figma.com/proto/4y3EZddALuBR3ouSEM57Np/MVP?scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2) if you want to see the flow)
-* **Flowchart** - Plan out the flow of your data through the application
-* **Github Issue Tickets** - Using the Project Instructions as a guide, create issue tickets for this project’s work.
-* **Github Milestones** - Separate those issue tickets into Milestones to plan out the work.
-* **Github Project Board** - Create a project board, add all of your issue tickets, and order them by priority.
+## Using HHP+W
+1. Visit [site](https://pos-system-team-4.netlify.app/)
+1. Login with your Google account
 
-## Definition of Done
+## HHP+W Features
+[Loom Video](https://www.loom.com/share/97a7b1f8e70941cfbcce31692684e8f6)
 
-Do not submit this project until all of the following are complete:
 
-1. All items are completed in getting started
-1. MVP, defined by the Acceptance Criteria, has been completed
-1. The title of your application is visible in the browser tab
-1. The project has been deployed
-1. Loom video has been created
-1. `README.md` has been updated
+## Team Members
+- [Patrick Burns](https://github.com/patrick24cr)
+- [Tatiana Pronoza](https://github.com/tpronoza)
+- [Micah (Tots) Stotsky](https://github.com/JustCallMeTots)
+- [Adam Steel](https://github.com/mcgrief)
+- [Cody Clark](https://github.com/cod-y-clark)
 
-## Requirements
-
-Things to remember while coding out the project
-
-* Clean code - single responsibility principle
-* ES6 Modules bundled with webpack
-* No errors - linters should be clean
-* Bootstrap 5 for styling
-* Completely planned out - before each section you should be making new cards on your Github project board before you code
-* Wireframes are provided for you for MVP
-* You should have an ERD
-
-### Instructions
-
-* [MVP Definition - It Gets the Job Done](./instructions/mvp.md)
-* [Stretch Goals 1 - Filtering the Data](./instructions/stretch-1.md)
-* [Stretch Goals 2 - Dealing with Change](./instructions/stretch-2.md)
-* [Stretch Goals 3 - Play that Funky Music](./instructions/stretch-3.md)
+## Technologies Used 
+- JavaScript
+- CSS
+- HTML
+- Firebase
+- Postman
