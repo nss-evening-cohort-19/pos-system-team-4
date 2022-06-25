@@ -36,8 +36,8 @@ const domEvents = () => {
     // CLICK EVENT FOR EDITING AN ITEM
     if (e.target.id.includes('update-item')) {
       const [, firebaseKey] = e.target.id.split('--');
-      // getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
-      getSingleFoodItem(firebaseKey).then((orderObj) => addItem(orderObj));
+      getSingleFoodItem(firebaseKey).then((item) => addItem(item.orderID, item));
+      // getSingleFoodItem(firebaseKey).then((orderObj) => addItem(orderObj));
     }
 
     // CLICK EVENT FOR DELETING AN ITEM
