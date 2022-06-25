@@ -16,7 +16,8 @@ HHP+W is a point of sale webapp created in a simulated work environment for Nash
 1. Login with your Google account
 
 ## HHP+W Features
-[LOOM VIDEO]
+[<img src="./instructions/tvicon.png" width="10%">](https://www.youtube.com/watch?v=Hc79sDi3f0U)
+
 
 ## Team Members
 - [Patrick Burns](https://github.com/patrick24cr)
