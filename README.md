@@ -12,7 +12,7 @@ HHP+W is a point of sale webapp created in a simulated work environment for Nash
 - [Wireframe](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)
 
 ## Using HHP+W
-1. Visit [site](netlify site)
+1. Visit [site](https://pos-system-team-4.netlify.app/)
 1. Login with your Google account
 
 ## HHP+W Features
