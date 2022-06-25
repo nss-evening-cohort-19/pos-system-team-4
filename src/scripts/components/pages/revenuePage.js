@@ -35,11 +35,7 @@ const revenuePage = (revenueArray) => {
     <h1 class="display-3">Revenue</h1>
     <h2 class="display-2">Total Revenue: $${totalRevenue}</h2>
     <div class="card text-center">
-  <div class="card-header">
-    Date Range
-  </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
     <p class="card-text">Total Tips: $${totalTips}</p>
     <p class="card-text">Total Call In Orders: ${numberOfCallIn}</p>
     <p class="card-text">Total Walk In Orders ${numberOfWalkIn}</p>
