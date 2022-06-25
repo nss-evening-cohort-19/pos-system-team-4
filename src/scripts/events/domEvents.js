@@ -2,7 +2,7 @@ import { deleteOrderItems } from '../../api/mergedData';
 import { getOrders, getOrder } from '../../api/ordersData';
 import { showOrders } from '../components/orders';
 import createOrderForm from '../forms/createOrder';
-import { getFoodItemsByOrderId, deleteFood, getSingleFoodItem } from '../../api/foodItemsData';
+import { getFoodItemsByOrderId, getSingleFoodItem, deleteSingleFoodItem } from '../../api/foodItemsData';
 import orderDetails from '../components/pages/orderDetailsPage';
 import revenuePage from '../components/pages/revenuePage';
 import { getRevenue } from '../../api/revenueData';
@@ -16,11 +16,7 @@ const domEvents = () => {
     }
     if (e.target.id.includes('orderDetails')) {
       const [, firebaseKey] = e.target.id.split('--');
-      let orderIsOpen = true;
-      if (e.target.id.includes('Closed')) {
-        orderIsOpen = false;
-      }
-      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey, orderIsOpen));
+      getFoodItemsByOrderId(firebaseKey).then((itemArray) => orderDetails(itemArray, firebaseKey));
     }
     if (e.target.id.includes('create-order')) {
       createOrderForm();
@@ -45,7 +41,8 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Delete Item from Order?')) {
         const [, firebaseKey, orderID] = e.target.id.split('--');
-        deleteFood(firebaseKey, orderID).then(orderDetails);
+        console.warn(firebaseKey, orderID);
+        deleteSingleFoodItem(firebaseKey, orderID).then((response) => orderDetails(response, orderID));
       }
     }
 
