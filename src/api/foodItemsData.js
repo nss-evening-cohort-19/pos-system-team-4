@@ -47,11 +47,10 @@ const deleteFood = (firebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const deleteSingleFoodItem = (foodItemObject, firebaseKey) => new Promise((resolve, reject) => {
-  const orderIDs = foodItemObject.orderID;
+const deleteSingleFoodItem = (firebaseKey, orderID) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/foodItems/${firebaseKey}.json`)
     .then(() => {
-      getFoodItemsByOrderId(orderIDs).then((foodArray) => resolve(foodArray));
+      getFoodItemsByOrderId(orderID).then((foodArray) => resolve(foodArray));
     })
     .catch((error) => reject(error));
 });
